@@ -37,4 +37,9 @@ export default class TerminalUtil {
         const resposta: Terminal.SingleLineMenuResponse = await terminal.singleLineMenu(['Sim', 'Nao']).promise
         return resposta.selectedIndex === 0
     }
+
+    static async esperarEnter(): Promise<void> {
+        terminal.white('\nPressione ENTER para continuar...')
+        await terminal.inputField({echo: false}).promise
+    }
 }
