@@ -1,5 +1,5 @@
 import TerminalUtil from "@/util/TerminalUtil"
-import { terminal } from "terminal-kit"
+import {terminal} from "terminal-kit"
 import menuFundamentos from "./menuFundamentos"
 
 export default async function menuPrincipal() {
@@ -12,8 +12,11 @@ export default async function menuPrincipal() {
     ]).promise
 
     switch (resposta.selectedIndex) {
-        case 0: await menuFundamentos(); break
-        case 1: process.exit(0)
+        case 0:
+            await menuFundamentos();
+            break
+        case 1:
+            process.exit(0)
     }
 
     menuPrincipal
