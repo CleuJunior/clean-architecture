@@ -15,6 +15,17 @@ export default class TerminalUtil {
         terminal.yellow(chave).green(valor).white('\n')
     }
 
+    static async campoRequerido(label: string, valorPadrao: string = ''): Promise<string> {
+        terminal.yellow(`\n${label}`)
+        const valor = await terminal.inputField({
+            default: valorPadrao
+
+        }).promise
+
+        if (valor) return valor
+        return TerminalUtil.campoRequerido(label)
+    }
+
     static async menu(opcoes: string[]): Promise<[number, string]> {
         const resposta: Terminal.SingleLineMenuResponse = await terminal.singleLineMenu(
             opcoes
@@ -41,5 +52,13 @@ export default class TerminalUtil {
     static async esperarEnter(): Promise<void> {
         terminal.white('\nPressione ENTER para continuar...')
         await terminal.inputField({echo: false}).promise
+    }
+
+    static async sucesso(texto: string, novaLinha: boolean = true): Promise<void> {
+        terminal.green((novaLinha ? '\n' : '') + texto)
+    }
+
+    static async erro(texto: string, novaLinha: boolean = true): Promise<void> {
+        terminal.red((novaLinha ? '\n' : '') + texto)
     }
 }
