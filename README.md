@@ -1,1 +1,1 @@
-# clean-architecture
+# hexagonal-architecture
