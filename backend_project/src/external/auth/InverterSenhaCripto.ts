@@ -3,7 +3,8 @@ import ProvedorCriptografia from "../../core/usuario/service/ProvedorCriptografi
 // Na arquitetura hexagonal esta classe é um Adaptador!
 // O adaptador NÃOOOOO faz parte do core da sua aplicação
 export default class InverterSenhaCripto implements ProvedorCriptografia {
-    criptografar(senha: string): string {
-        return senha.split('').reverse().join('')
+    criptografar(texto: string | undefined): string {
+        // @ts-ignore
+        return texto.split('').reverse().join('')
     }
 }
