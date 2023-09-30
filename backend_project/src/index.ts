@@ -5,6 +5,8 @@ import RepositorioUsuarioPg from "@/external/db/RepositorioUsuarioPg"
 import SenhaCripto from "@/external/auth/SenhaCripto"
 import RegistrarUsuario from "@/core/usuario/service/RegistrarUsuario"
 import RegistraUsuarioController from "@/external/api/RegistraUsuarioController"
+import LoginUsuario from "@/core/usuario/service/LoginUsuario"
+import LoginUsuarioController from "@/external/api/LoginUsuarioController"
 
 dotenv.config()
 
@@ -26,4 +28,7 @@ const registraUsuario = new RegistrarUsuario(
     provedotrCripto
 )
 
+const loginUsuario = new LoginUsuario(repositorioUsuario, provedotrCripto)
+
 new RegistraUsuarioController(app, registraUsuario)
+new LoginUsuarioController(app, loginUsuario)
